@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use CodeWithDennis\FilamentThemeInspector\FilamentThemeInspectorPlugin;
 use DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin;
 use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
+use EightyNine\Reports\ReportsPlugin;
 use Filament\Forms\Components\Select;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -40,14 +41,14 @@ class AppPanelProvider extends PanelProvider
             ->bootUsing(function () {
                 Select::configureUsing(function (Select $select): void {
                     $select
-                    ->native(false)
-                    ->searchable()
-                    ->preload();
+                        ->native(false)
+                        ->searchable()
+                        ->preload();
                 });
 
                 FilamentView::registerRenderHook(
                     PanelsRenderHook::SIDEBAR_FOOTER,
-                    fn (): string => Blade::render('<p class=\'copyright\'> @copyright '.today()->year. ' ' . config('app.name'). '</p>'),
+                    fn(): string => Blade::render('<p class=\'copyright\'> @copyright ' . today()->year . ' ' . config('app.name') . '</p>'),
                 );
             })
             ->registration()
@@ -92,10 +93,11 @@ class AppPanelProvider extends PanelProvider
                         "Admin" => "test@email.com"
                     ]),
                 FilamentThemeInspectorPlugin::make()
-                    ->disabled(fn() => ! app()->hasDebugModeEnabled()),
-                // ->disabled(true),
+                    // ->disabled(fn() => ! app()->hasDebugModeEnabled()),
+                ->disabled(true),
                 FilamentEditProfilePlugin::make()
-                    ->shouldRegisterNavigation(false)
+                    ->shouldRegisterNavigation(false),
+                ReportsPlugin::make()
             ])
             ->userMenuItems([
                 'profile' => MenuItem::make()

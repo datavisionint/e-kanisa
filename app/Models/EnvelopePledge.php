@@ -6,14 +6,13 @@ use App\Casts\Number;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Offering extends Model
+class EnvelopePledge extends Model
 {
-
     protected $fillable = [
-        'envelope_id',
-        'offering_type_id',
-        'amount',
-        'date',
+        "amount",
+        "envelope_id",
+        "offering_type_id",
+        "type_id"
     ];
 
     protected function casts(): array
@@ -22,9 +21,10 @@ class Offering extends Model
             'amount' => Number::class,
         ];
     }
+    
 
     /**
-     * Get the envelope that owns the Offering
+     * Get the envelope that owns the EnvelopePledge
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -32,13 +32,14 @@ class Offering extends Model
     {
         return $this->belongsTo(Envelope::class);
     }
+
     /**
-     * Get the envelope that owns the Offering
+     * Get the offeringType that owns the EnvelopePledge
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function type(): BelongsTo
+    public function offeringType(): BelongsTo
     {
-        return $this->belongsTo(OfferingType::class, "offering_type_id");
+        return $this->belongsTo(OfferingType::class);
     }
 }

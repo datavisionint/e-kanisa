@@ -39,7 +39,7 @@ class OfferingResource extends Resource
                         Forms\Components\TextInput::make('amount')
                             ->required()
                             ->prefix("TZS")
-                            ->numeric(),
+                            ->mask(moneyMask()),
                     ])
             ]);
     }

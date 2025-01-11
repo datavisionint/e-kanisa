@@ -10,7 +10,10 @@
         "codewithdennis/filament-theme-inspector": "^0.0.7",
         "diogogpinto/filament-auth-ui-enhancer": "^1.0",
         "dutchcodingcompany/filament-developer-logins": "^1.5",
+        "eightynine/filament-advanced-widgets": "^3.0",
+        "eightynine/filament-reports": "^3.0",
         "filament/filament": "^3.2",
+        "icetalker/filament-table-repeater": "^1.3",
         "joaopaulolndev/filament-edit-profile": "^1.0",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9"
@@ -29,7 +32,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
