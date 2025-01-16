@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\AdvancedStatsOverviewWidget;
 use CodeWithDennis\FilamentThemeInspector\FilamentThemeInspectorPlugin;
 use DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin;
 use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
@@ -62,7 +63,9 @@ class AppPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([])
+            ->widgets([
+                AdvancedStatsOverviewWidget::class
+            ])
             ->brandLogo(asset('img/logo.png'))
             ->brandLogoHeight("50px")
             ->darkMode(false)

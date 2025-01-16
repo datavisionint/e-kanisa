@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('envelopes', function (Blueprint $table) {
-            $table->unsignedBigInteger("member_id")->nullable();
+            $table->unsignedBigInteger("offering_type_id")->after("id")->nullable();
+            $table->decimal("amount", 15, 2)->after("offering_type_id")->nullable();
         });
     }
 
@@ -22,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('envelopes', function (Blueprint $table) {
-            $table->dropColumn('member_id');
+            $table->dropColumn("offering_type_id");
+            $table->dropColumn("amount");
         });
     }
 };

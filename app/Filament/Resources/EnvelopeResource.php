@@ -32,26 +32,19 @@ class EnvelopeResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make("name")
-                    ->label("Name")
-                    ->required(),
-                TextInput::make("phone_number")
+                Forms\Components\Select::make('member_id')
                     ->required()
-                    ->label("Phone Number")
-                    ->numeric()
-                    ->prefix("255"),
-                TableRepeater::make("Pledges")
-                    ->relationship("pledges")
-                    ->minItems(1)
-                    ->schema([
-                        Forms\Components\Select::make('offering_type_id')
-                            ->required()
-                            ->relationship('offeringType', 'name'),
-                        Forms\Components\TextInput::make('amount')
-                            ->required()
-                            ->prefix("TZS")
-                            ->mask(moneyMask()),
-                    ]),
+                    ->searchable()
+                    ->preload()
+                    ->getOptionLabelFromRecordUsing(fn(Model $record) => "{$record->first_name} {$record->last_name}")
+                    ->relationship('member', 'full_name'),
+                Forms\Components\Select::make('offering_type_id')
+                    ->required()
+                    ->relationship('offeringType', 'name'),
+                Forms\Components\TextInput::make('amount')
+                    ->required()
+                    ->prefix("TZS")
+                    ->mask(moneyMask()),
             ]);
     }
 
@@ -68,10 +61,10 @@ class EnvelopeResource extends Resource
                             ->prefix('#')
                             ->searchable(),
                         Stack::make([
-                            Tables\Columns\TextColumn::make('name')
+                            Tables\Columns\TextColumn::make('member.full_name')
                                 ->sortable()
                                 ->searchable(),
-                            Tables\Columns\TextColumn::make('phone_number')
+                            Tables\Columns\TextColumn::make('member.phone_number')
                                 ->sortable()
                                 ->prefix('255')
                                 ->searchable(),
