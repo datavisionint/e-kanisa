@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\ChurchMember;
 use App\Models\Envelope;
 use App\Models\Member;
 use App\Models\Offering;
@@ -14,7 +15,8 @@ class AdvancedStatsOverviewWidget extends BaseWidget
 {
     protected function getStats(): array
     {
-        $numberOfMembers = Number::abbreviate(Member::query()->count());
+        // dd(Envelope::query()->get());
+        $numberOfMembers = Number::abbreviate(ChurchMember::query()->count());
         $totalPledges =  Number::abbreviate(Envelope::query()->sum("amount"));
         $totalOfferings =  Number::abbreviate(Offering::query()->sum("amount"));
         return [

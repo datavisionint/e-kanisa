@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MemberResource\Pages;
-use App\Filament\Resources\MemberResource\RelationManagers;
-use App\Models\Member;
+use App\Filament\Resources\ChurchMemberResource\Pages;
+use App\Models\ChurchMember;
 use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Hidden;
@@ -12,12 +11,10 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class MemberResource extends Resource
+class ChurchMemberResource extends Resource
 {
-    protected static ?string $model = Member::class;
+    protected static ?string $model = ChurchMember::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
@@ -97,7 +94,7 @@ class MemberResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageMembers::route('/'),
+            'index' => Pages\ManageChurchMembers::route('/'),
         ];
     }
 }

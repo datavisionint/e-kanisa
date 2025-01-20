@@ -24,7 +24,7 @@
 .fi-sidebar-nav {
     @apply bg-gray-100;
 }
-.fi-sidebar-item-active {
+.fi-sidebar-item-active, .fi-sidebar-nav-tenant-menu-ctn {
     @apply bg-white border font-bold rounded-lg shadow-md;
     .fi-sidebar-item-button {
         @apply bg-white text-gray-900;
@@ -33,6 +33,9 @@
     .fi-sidebar-item-label {
         @apply text-gray-900 font-bold;
     }
+}
+.fi-sidebar-nav{
+    @apply gap-4;
 }
 .fi-page-sub-navigation-sidebar-ctn{
     @apply w-56;

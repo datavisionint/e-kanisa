@@ -53,25 +53,25 @@ class EnvelopeResource extends Resource
         return $table
             ->recordClasses(fn(Model $record) => "envelope")
             ->columns([
-                Grid::make()
-                    ->columns(6)
-                    ->schema([
-                        Tables\Columns\TextColumn::make('id')
-                            ->sortable()
-                            ->prefix('#')
-                            ->searchable(),
-                        Stack::make([
-                            Tables\Columns\TextColumn::make('member.full_name')
-                                ->sortable()
-                                ->searchable(),
-                            Tables\Columns\TextColumn::make('member.phone_number')
-                                ->sortable()
-                                ->prefix('255')
-                                ->searchable(),
-                        ])
-                    ])
+                Tables\Columns\TextColumn::make('id')
+                    ->sortable()
+                    ->prefix('#')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('member.full_name')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('offeringType.name')
+                    ->sortable()
+                    ->badge()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('amount')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('member.phone_number')
+                    ->sortable()
+                    ->prefix('255')
+                    ->searchable(),
             ])
-            ->contentGrid(["sm" => 3])
             ->filters([
                 //
             ])

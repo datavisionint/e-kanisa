@@ -2,18 +2,28 @@
 
 namespace App\Models;
 
+use App\Casts\Number;
+use App\Models\Concerns\HasTenancy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Envelope extends Model
 {
+    use HasTenancy;
+
     protected $fillable = [
         "name",
         "phone_number",
         "amount",
-        "offering_type_id"
+        "offering_type_id",
+        "church_id"
     ];
+
+    public function casts(){
+        return [
+            "amount" => Number::class
+        ];
+    }
 
     /**
      * Get all of the offeringType for the Envelope
@@ -32,6 +42,6 @@ class Envelope extends Model
      */
     public function member(): BelongsTo
     {
-        return $this->belongsTo(Member::class);
+        return $this->belongsTo(ChurchMember::class);
     }
 }

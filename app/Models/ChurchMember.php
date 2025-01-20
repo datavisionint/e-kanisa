@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTenancy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class ChurchMember extends Model
 {
+    protected $table = "members";
+    use HasTenancy;
+
     protected $fillable = [
         "first_name",
         "middle_name",
